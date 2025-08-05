@@ -111,6 +111,7 @@ form {
   display: flex;
   flex-direction: column;
   line-height: 1.5;
+  margin-block-end: 2rem;
 }
 
 label {
@@ -247,7 +248,12 @@ footer {
   text-align: center;
   padding: 1rem;
   border-top: 1px solid #ccc;
+  background-color: var(--md-sys-color-background);
   @media screen and (height < 550px) {
+    position: relative;
+    margin-block-start: 2rem;
+  }
+  @media screen and (width < 550px) {
     position: relative;
     margin-block-start: 2rem;
   }
