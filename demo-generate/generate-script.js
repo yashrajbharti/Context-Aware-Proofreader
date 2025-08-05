@@ -227,6 +227,7 @@ Return words that would legitimately appear in text about this topic.`,
       const topicResult = await detectTopic(inputText);
 
       console.log(`Topic detected: ${topicResult.topics[0]}`);
+      wordDisplay.value = `Topic detected: ${topicResult.topics[0]}`;
       console.log(`Confidence: ${(topicResult.confidence * 100).toFixed(1)}%`);
       console.log(`Keywords found:`, topicResult.keywords);
 

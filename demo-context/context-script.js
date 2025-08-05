@@ -544,6 +544,7 @@ Example for "I love Pikachu" with dictionary ["Pikachu"]:
       appendResult("=".repeat(60));
 
       const proofreadResult = JSON.parse(result);
+      console.log(proofreadResult);
       appendResult("Raw JSON Response:");
       appendResult(result);
       appendResult("");

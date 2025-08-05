@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       appendResult("Proofreading text...");
       const result = await proofreader.proofread(originalSentence);
 
+      console.log(result);
       appendResult("");
       appendResult("RESULTS:");
       appendResult("Raw result object: " + JSON.stringify(result, null, 2));

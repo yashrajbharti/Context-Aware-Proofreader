@@ -168,6 +168,7 @@ Example for "I seen him":
         { responseConstraint: proofreadingSchema }
       );
 
+      console.log(result);
       // Parse and display results
       appendResult("");
       appendResult("PROMPT API PROOFREADING RESULTS:");
