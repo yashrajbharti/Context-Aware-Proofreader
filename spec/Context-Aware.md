@@ -91,13 +91,13 @@ dictionary ContextGenerationResult {
   DOMString explanation;
 };
 
-dictionary AIProofreadResult {
+dictionary ProofreadResult {
   DOMString correctedInput;
-  sequence<AIProofreadCorrection> corrections;
+  sequence<ProofreadCorrection> corrections;
   sequence<DOMString> dictionaryWordsFound;
 };
 
-dictionary AIProofreadCorrection {
+dictionary ProofreadCorrection {
   unsigned long long startIndex;
   unsigned long long endIndex;
   DOMString correction;
@@ -115,13 +115,13 @@ enum CorrectionType {
 };
 
 [Exposed=(Window,Worker), SecureContext]
-interface AIContextProofreader {
+interface ContextProofreader {
   static Promise<TopicDetectionResult> detectTopic(DOMString text);
   static Promise<ContextGenerationResult> generateContextWords(
     sequence<DOMString> topics,
     optional sequence<DOMString> keywords = []
   );
-  static Promise<AIProofreadResult> proofreadWithContext(
+  static Promise<ProofreadResult> proofreadWithContext(
     DOMString text,
     sequence<DOMString> contextWords
   );

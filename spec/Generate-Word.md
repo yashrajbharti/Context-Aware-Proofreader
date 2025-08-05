@@ -92,7 +92,7 @@ enum SupportedTopic {
 };
 
 [Exposed=(Window,Worker), SecureContext]
-interface AIWordGenerator {
+interface WordGenerator {
   static Promise<TopicAnalysisResult> analyzeTopic(DOMString text);
   static Promise<WordGenerationResult> generateWords(
     SupportedTopic topic,
