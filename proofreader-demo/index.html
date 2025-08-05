@@ -4,32 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Compare AI proofreading capabilities between the basic Proofreader API and advanced Prompt API with side-by-side functionality demonstrations and detailed analysis.">
+    <meta name="description"
+        content="Compare AI proofreading capabilities between the basic Proofreader API and advanced Prompt API with side-by-side functionality demonstrations and detailed analysis.">
     <title>Proofreader API Demo</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+      </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
 </head>
 
 <body>
-    <h1>Proofreader API Demo</h1>
+    <main id="proofreader-demo">
+        <h1>Proofreader API Demo (Basic)</h1>
 
-    <div id="demo-text">
-        <h2>Original Text:</h2>
-        <input type="text" id="original-sentence"
-            value="I seen him yesterday at the store, and he bought two loafs of bread." size="80">
+        <form id="demo-text" onsubmit="return false;">
+            <article class="sidenote">
+                <p>The <strong>Proofreader API</strong> currently only returns corrected text while the
+                    <strong>Prompt
+                        API</strong> returns full structured corrections with types and explanations. This happens
+                    because the Proofreader API is not yet fully implemented and only returns corrected text.
+                </p>
+            </article>
+            <md-outlined-text-field label="User Input" type="text" id="original-sentence"
+                value="I seen him yesterday at the store, and he bought two loafs of bread."
+                size="80"></md-outlined-text-field>
 
-        <div style="margin: 20px 0;">
-            <h3>API Comparison:</h3>
-            <button id="proofread-btn">Proofreader API (Incomplete)</button>
-            <button id="prompt-btn" style="margin-left: 10px;">Prompt API (Full Features)</button>
-        </div>
 
-        <div id="results">
-            <h3>Results:</h3>
-            <p><strong>Proofreader API:</strong> Currently only returns corrected text</p>
-            <p><strong>Prompt API:</strong> Returns full structured corrections with types and explanations</p>
-            <textarea id="output" rows="20" cols="80" spellcheck="false"
-                placeholder="Click a button to see proofreading results here..."></textarea>
-        </div>
-    </div>
+
+            <md-outlined-text-field label="Use Proofreader or Prompt API" type="textarea" id="output" rows="20"
+                cols="80" spellcheck="false" placeholder=""></md-outlined-text-field>
+            <div>
+                <md-filled-tonal-button id="proofread-btn" has-icon="true">
+                    <md-icon slot="icon">experiment</md-icon>
+                    Proofreader API (Incomplete)</md-filled-tonal-button>
+                <md-filled-button id="prompt-btn" has-icon="true">
+                    <md-icon slot="icon">check</md-icon>
+                    Prompt API (Full Features)</md-filled-button>
+            </div>
+        </form>
+
+    </main>
 
     <script src="app.js"></script>
     <script src="script.js"></script>

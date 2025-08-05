@@ -376,9 +376,9 @@ Return words that would legitimately appear in text about this topic.`,
       const allWords = [...new Set([...existingWords, ...contextWords])];
 
       // Update dictionary textarea (temporarily enable to set content)
-      dictionaryInput.disabled = false;
+      dictionaryInput.readOnly = false;
       dictionaryInput.value = allWords.join("\n");
-      dictionaryInput.disabled = true;
+      dictionaryInput.readOnly = true;
 
       appendResult(`Dictionary updated with ${allWords.length} total words`);
       appendResult(`Added ${contextWords.length} new context words`);

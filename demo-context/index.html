@@ -4,41 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Experience AI-powered context-aware proofreading with automatic topic detection and smart dictionary generation that adapts to your content's domain and context.">
+    <meta name="description"
+        content="Experience AI-powered context-aware proofreading with automatic topic detection and smart dictionary generation that adapts to your content's domain and context.">
     <title>Context-Aware Proofreader Demo</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+      </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
 </head>
 
 <body>
-    <h1>AI Context-Aware Proofreader Demo</h1>
-    <p>This demo features <strong>AI-powered context generation</strong> that automatically detects topics and builds
-        smart dictionaries.</p>
-    <p><strong>How it works:</strong> 1) AI analyzes your text to detect the topic 2) Generates relevant words for that
-        context 3) Auto-populates the dictionary 4) Proofreads while respecting the context</p>
-
-    <div id="demo-text">
-        <h2>Text to Proofread:</h2>
-        <input type="text" id="original-text"
-            value="I love Pikachu and my frend thinks Charizard is cooler but there both awesome Pokemon." size="80">
-
-        <h2>Context Aware Dictionary (auto-generated, read-only):</h2>
-        <textarea id="dictionary" rows="20" cols="80" disabled
-            placeholder="Dictionary will be auto-generated when you click 'Generate AI Context Dictionary'..."></textarea>
-
-        <div style="margin: 20px 0;">
-            <button id="generate-context-btn">Generate AI Context Dictionary</button>
-            <button id="context-proofread-btn" style="margin-left: 10px;">Proofread with Context</button>
-        </div>
-
-        <div id="results">
-            <h3>Results:</h3>
-            <p><strong>Step 1:</strong> Click "Generate AI Context Dictionary" to auto-detect topics and populate the
-                dictionary</p>
-            <p><strong>Step 2:</strong> Click "Proofread with Context" to proofread using the AI-generated dictionary
+    <main id="context-demo">
+        <h1>AI Context-Aware Proofreader Demo</h1>
+        <article class="sidenote">
+            <p>This demo features <strong>AI-powered context generation</strong> that automatically detects topics and
+                builds
+                smart dictionaries. It works by the AI analyzing your text to detect the topic, generating relevant
+                words for that context, auto-populating the dictionary, and proofreading while respecting the context.
             </p>
-            <textarea id="output" rows="20" cols="80" spellcheck="false"
-                placeholder="Click 'Generate AI Context Dictionary' first to see topic detection and auto-dictionary creation..."></textarea>
-        </div>
-    </div>
+        </article>
+
+        <form id="demo-text" onsubmit="return false;">
+            <md-outlined-text-field label="User Input" type="text" id="original-text"
+                value="I love Pikachu and my frend thinks Charizard is cooler but there both awesome Pokemon." size="80"
+                spellcheck="false"></md-outlined-text-field>
+
+            <md-outlined-text-field type="textarea" id="dictionary" rows="5" cols="80" spellcheck="false"
+                label="Dictionary will be auto-generated with the topic and words" readonly></md-outlined-text-field>
+
+            <div style="margin: 20px 0;">
+                <md-filled-tonal-button id="generate-context-btn" has-icon="true">
+                    <md-icon slot="icon">experiment</md-icon>
+                    Generate AI Context Dictionary</md-filled-tonal-button>
+                <md-filled-button id="context-proofread-btn" has-icon="true">
+                    <md-icon slot="icon">rocket</md-icon>
+                    Proofread with Context Awareness</md-filled-button>
+            </div>
+
+            <md-outlined-text-field type="textarea" id="output" rows="12" cols="80" spellcheck="false"
+                label="Dry run output for topic detection and auto-dictionary creation"></md-outlined-text-field>
+        </form>
+    </main>
 
     <script src="context-script.js"></script>
 </body>
