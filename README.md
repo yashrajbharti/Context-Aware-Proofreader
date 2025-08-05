@@ -1,3 +1,3 @@
-Prompt Built-in AI Exploration
+# Prompt Built-in AI Exploration
 
-Gemini Nano in Chrome
+
