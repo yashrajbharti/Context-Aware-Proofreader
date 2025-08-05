@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context-Aware Proofreader Demo</title>
+</head>
+
+<body>
+    <h1>AI Context-Aware Proofreader Demo</h1>
+    <p>This demo features <strong>AI-powered context generation</strong> that automatically detects topics and builds
+        smart dictionaries.</p>
+    <p><strong>How it works:</strong> 1) AI analyzes your text to detect the topic 2) Generates relevant words for that
+        context 3) Auto-populates the dictionary 4) Proofreads while respecting the context</p>
+
+    <div id="demo-text">
+        <h2>Text to Proofread:</h2>
+        <input type="text" id="original-text"
+            value="I love Pikachu and my frend thinks Charizard is cooler but there both awesome Pokemon." size="80">
+
+        <h2>Context Aware Dictionary (auto-generated, read-only):</h2>
+        <textarea id="dictionary" rows="20" cols="80" disabled
+            placeholder="Dictionary will be auto-generated when you click 'Generate AI Context Dictionary'..."></textarea>
+
+        <div style="margin: 20px 0;">
+            <button id="generate-context-btn">Generate AI Context Dictionary</button>
+            <button id="context-proofread-btn" style="margin-left: 10px;">Proofread with Context</button>
+        </div>
+
+        <div id="results">
+            <h3>Results:</h3>
+            <p><strong>Step 1:</strong> Click "Generate AI Context Dictionary" to auto-detect topics and populate the
+                dictionary</p>
+            <p><strong>Step 2:</strong> Click "Proofread with Context" to proofread using the AI-generated dictionary
+            </p>
+            <textarea id="output" rows="20" cols="80" spellcheck="false"
+                placeholder="Click 'Generate AI Context Dictionary' first to see topic detection and auto-dictionary creation..."></textarea>
+        </div>
+    </div>
+
+    <script src="context-script.js"></script>
+</body>
+
+</html>

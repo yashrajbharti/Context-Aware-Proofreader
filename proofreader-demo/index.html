@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proofreader API Demo</title>
+</head>
+
+<body>
+    <h1>Proofreader API Demo</h1>
+
+    <div id="demo-text">
+        <h2>Original Text:</h2>
+        <input type="text" id="original-sentence"
+            value="I seen him yesterday at the store, and he bought two loafs of bread." size="80">
+
+        <div style="margin: 20px 0;">
+            <h3>API Comparison:</h3>
+            <button id="proofread-btn">Proofreader API (Incomplete)</button>
+            <button id="prompt-btn" style="margin-left: 10px;">Prompt API (Full Features)</button>
+        </div>
+
+        <div id="results">
+            <h3>Results:</h3>
+            <p><strong>Proofreader API:</strong> Currently only returns corrected text</p>
+            <p><strong>Prompt API:</strong> Returns full structured corrections with types and explanations</p>
+            <textarea id="output" rows="20" cols="80" spellcheck="false"
+                placeholder="Click a button to see proofreading results here..."></textarea>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

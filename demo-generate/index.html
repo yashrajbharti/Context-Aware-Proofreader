@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Word Generation Demo</title>
+</head>
+
+<body>
+    <h1>AI Word Generation Demo</h1>
+    <p>This demo showcases <strong>AI-powered topic detection and context word generation</strong> - the core innovation
+        behind intelligent dictionaries.</p>
+    <p><strong>How it works:</strong> 1) AI analyzes your text 2) Detects the topic/domain 3) Generates relevant
+        vocabulary for that context</p>
+
+    <div id="demo-text">
+        <h2>Input Text:</h2>
+        <!-- Try these examples to test different topics:
+             Pokemon: "I love Pikachu and think Charizard is awesome in Pokemon battles."
+             Technology: "The API returns JSON data but the React component has a bug."
+             Medicine: "The patient was diagnosed with pneumonia and prescribed antibiotics."
+             Fiction: "Gandalf and Harry Potter are both powerful wizards in their stories."
+             Sports: "The Lakers beat the Warriors but LeBron had a great game."
+             Science: "The DNA analysis revealed mutations in the CRISPR sequence." -->
+        <input type="text" id="input-text" value="I love Pikachu and think Charizard is awesome in Pokemon battles."
+            size="80">
+
+        <div style="margin: 20px 0;">
+            <button id="generate-btn">Generate Context Words</button>
+        </div>
+
+        <h2>Generated Context Words:</h2>
+        <textarea id="word-display" rows="8" cols="80"
+            placeholder="Generated words will appear here after clicking 'Generate Context Words'..."></textarea>
+
+
+    </div>
+
+    <script src="generate-script.js"></script>
+</body>
+
+</html>
