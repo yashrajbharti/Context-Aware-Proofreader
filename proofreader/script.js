@@ -2,7 +2,7 @@ const input = document.querySelector("[contenteditable]");
 const form = document.querySelector("form");
 const legend = document.querySelector("span").firstChild;
 const popover = document.querySelector("[popover]");
-const button = popover.querySelector("button");
+const chip = popover.querySelector("md-suggestion-chip");
 
 (async () => {
   console.log("[INIT] AI Proofreader (Prompt API) starting...");
@@ -293,7 +293,7 @@ IMPORTANT: Pay special attention to capitalization errors! Scan every word caref
     }
   }
 
-  form.querySelector("button").disabled = false;
+  form.querySelector("md-filled-button").disabled = false;
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("[PROOFREAD] Proofreading requested...");
@@ -413,7 +413,7 @@ IMPORTANT: Pay special attention to capitalization errors! Scan every word caref
       console.log("[NONE] No correction found at caret position");
       popover.hidePopover();
       form
-        .querySelectorAll("button")
+        .querySelectorAll("md-filled-button")
         .forEach((button) => button.removeAttribute("tabindex"));
       return;
     }
@@ -428,11 +428,13 @@ IMPORTANT: Pay special attention to capitalization errors! Scan every word caref
     highlightRange.setStart(text, 0);
     highlightRange.setEnd(text, heading.length);
     errorHighlights[type].add(highlightRange);
-    popover.querySelector(".correction").textContent = correction;
+    popover.querySelector(".correction").label = correction;
     popover.querySelector(".explanation").textContent = explanation;
     popover.style.top = `${Math.round(top)}px`;
     popover.style.left = `${Math.round(left)}px`;
-    form.querySelectorAll("button").forEach((button) => (button.tabIndex = -1));
+    form
+      .querySelectorAll("md-filled-button")
+      .forEach((button) => (button.tabIndex = -1));
     console.log(
       `[POPOVER] Showing popover for ${type}: "${correction}" - ${explanation}`
     );
@@ -443,13 +445,13 @@ IMPORTANT: Pay special attention to capitalization errors! Scan every word caref
   // accept correction button.
   popover.addEventListener("toggle", (e) => {
     if (e.oldState === "closed") {
-      button.addEventListener("keydown", buttonBlur);
+      chip.addEventListener("keydown", chipBlur);
       return;
     }
-    button.removeEventListener("keydown", buttonBlur);
+    chip.removeEventListener("keydown", chipBlur);
   });
 
-  const buttonBlur = (e) => {
+  const chipBlur = (e) => {
     if (e.key === "Tab") {
       e.preventDefault();
       input.focus();
@@ -457,7 +459,7 @@ IMPORTANT: Pay special attention to capitalization errors! Scan every word caref
   };
 
   // Accept the correction.
-  button.addEventListener("click", () => {
+  chip.addEventListener("click", () => {
     if (!currentCorrection) {
       console.warn("[WARNING] No correction to accept");
       return;
