@@ -4,13 +4,13 @@ This advanced demo showcases **AI-powered context generation** that automaticall
 
 ## AI-Powered Features
 
-### 1. **Topic Detection API**
+### 1. **Topics API**
 
 - Analyzes your text using AI to detect the main topic
 - Returns confidence levels and key indicators
 - Supports: Pokemon, Technology, Sports, Entertainment, Science, Business, and General topics
 
-### 2. **Smart Context Generation**
+### 2. **Context Generate API**
 
 - **Pokemon Topic**: Loads all 1025+ Pokemon names from database (pokemon.json)
 - **Other Topics**: Generates relevant vocabulary (APIs, brands, technical terms, etc.)
@@ -28,8 +28,8 @@ This advanced demo showcases **AI-powered context generation** that automaticall
 
 1. Enter your text in the input field
 2. Click **"Generate AI Context Dictionary"**
-3. AI analyzes the text and detects the topic
-4. System automatically populates dictionary with relevant words
+3. Topics API analyzes the text and detects the topic
+4. Context Generate API automatically populates dictionary with relevant words
 5. View detailed analysis in results area
 
 ### Step 2: Proofread with Context
@@ -45,8 +45,8 @@ This advanced demo showcases **AI-powered context generation** that automaticall
 
 **AI Process:**
 
-1. **Topic Detection**: "pokemon" (95% confidence)
-2. **Context Generation**: Loads 1025+ Pokemon names + keywords
+1. **Topics API**: "pokemon" (95% confidence)
+2. **Context Generate API**: Loads 1025+ Pokemon names + keywords
 3. **Dictionary Update**: Auto-populates with Pokemon vocabulary
 4. **Smart Proofreading**:
    - Preserves: "Pikachu", "Charizard", "Pokemon"
@@ -71,24 +71,37 @@ This advanced demo showcases **AI-powered context generation** that automaticall
 
 ## Technical Implementation
 
-- **Topic Detection**: Custom Prompt API with JSON schema constraints
+- **Topics API**: Custom Prompt API with JSON schema constraints
 - **Pokemon Database**: Complete JSON file with all Pokemon names and IDs
-- **Context Engine**: Intelligent word generation based on detected topics
+- **Context Generate API**: Intelligent word generation based on detected topics
 - **Auto-Population**: Seamless dictionary updates with existing word preservation
 - **Error Handling**: Graceful fallbacks and clear error messages
 
 ## Web IDL
 
 ```idl
-dictionary TopicDetectionResult {
+dictionary TopicsResult {
   sequence<DOMString> topics;
   double confidence;
   sequence<DOMString> keywords;
 };
 
-dictionary ContextGenerationResult {
+dictionary ContextGenerateResult {
   sequence<DOMString> contextWords;
   DOMString explanation;
+};
+
+enum SupportedTopic {
+  "pokemon",
+  "technology", 
+  "medicine",
+  "sports",
+  "entertainment",
+  "science",
+  "business",
+  "fiction",
+  "acronym",
+  "general"
 };
 
 dictionary ProofreadResult {
@@ -115,12 +128,21 @@ enum CorrectionType {
 };
 
 [Exposed=(Window,Worker), SecureContext]
-interface ContextProofreader {
-  static Promise<TopicDetectionResult> detectTopic(DOMString text);
-  static Promise<ContextGenerationResult> generateContextWords(
+interface TopicsAPI {
+  static Promise<TopicsResult> analyze(DOMString text);
+};
+
+[Exposed=(Window,Worker), SecureContext]
+interface ContextGenerateAPI {
+  static Promise<ContextGenerateResult> generate(
     sequence<DOMString> topics,
     optional sequence<DOMString> keywords = []
   );
+  static Promise<sequence<DOMString>> loadPokemonDatabase();
+};
+
+[Exposed=(Window,Worker), SecureContext]
+interface ContextProofreader {
   static Promise<ProofreadResult> proofreadWithContext(
     DOMString text,
     sequence<DOMString> contextWords
